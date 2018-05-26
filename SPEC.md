@@ -35,7 +35,6 @@ A 8 element stack is proveded for the workings of operators. If you try to push 
 
 `#` Move down one program. The interpreter will exit if trying to move up or down to a nonexistant program. 
 `^` Move up a program 
-`0-9` Move to the program that corresponds to the digit. Program 10 will be selected if `0` 
 
 `!` Pops a value from the stack. Pushes 1 if the value was 0, pushes 0 otherwise. 
 `=` Pops two values from the stack. Pushes 1 if the values were equal, 0 otherwise.
@@ -50,27 +49,11 @@ A 8 element stack is proveded for the workings of operators. If you try to push 
 `~` Duplicate the number on the top of the stack. 
 `,` Pop a number from the stack and discard it. 
 
-`:` Enter Program Mode 
 `|` Enter Read Mode 
 `]` Enter Write Mode 
 `>` Enter Stack Push Mode 
 `"` Enter Print Mode 
 `{` Enter Conditional Mode
-
-### Program Mode
-`0-9` Interpeted as a decimal number 
-`.` Go back to Main Mode and move to the program as dictated by the previous number.
-
-This mode is normally used as in the code fragment `:27.`. This would (in Main Mode) move to the program 27.
-It only really makes sense though when more than 8 programs are allowed.
-
-If the selected program number is not allowed in the interpreter, nothing will happen and Main Mode will be returned to on the same program,
-
-#### Example
-```
-:77.
-```
-Goes to program number 77, if it is allowed in the interpreter.
 
 ### Read/Write Mode
 `0-9` Interpreted as a decimal number 
