@@ -81,8 +81,15 @@ Pushes decimal 30 to the stack.
 ### Print Mode
 `"` Print the text to stdout and return to Main Mode. 
 `\`` Print the text to stderr and return to Main Mode.
+`\\` Escape character.
 
 Anything else is the text to be printed.
+
+#### Escape Characters
+`\\\\` Literal backslash
+`\n` Newline
+`\"` Literal Quote
+`\g` Literal Grave (replace g with a grave character)
 
 #### Example
 ```
