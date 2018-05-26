@@ -31,29 +31,62 @@ A 8 element stack is proveded for the workings of operators. If you try to push 
 
 ## Instructions
 ### Main Mode
-` ` NOP 
+#### NOP
+` `
 
-`#` Move down one program. The interpreter will exit if trying to move up or down to a nonexistant program. 
-`^` Move up a program 
+Does nothing.
 
-`!` Pops a value from the stack. Pushes 1 if the value was 0, pushes 0 otherwise. 
-`=` Pops two values from the stack. Pushes 1 if the values were equal, 0 otherwise.
+#### Up/Down Program
+`#` Down 
+`^` Up
 
-`+` Pop two numbers from the stack, sum them, and then push the sum onto the stack. 
-`-` Pop two numbers from the stack, subract them, and then push the sum onto the stack. 
-`*` Multiply two numbers on the stack. 
-`%` Divide two numbers on the stack, using integer division. 
-`d` Pop a number from the stack and print it to stdout in decimal. 
-`D` Pop a number from the stack and print it to stderr in decimal. 
+Moves up/down a program.
 
-`~` Duplicate the number on the top of the stack. 
-`,` Pop a number from the stack and discard it. 
+The interpreter will exit if trying to move up or down to a nonexistant program. 
 
-`|` Enter Read Mode 
-`]` Enter Write Mode 
-`>` Enter Stack Push Mode 
-`"` Enter Print Mode 
-`{` Enter Conditional Mode
+When moving up/down a program, the tape will be advanced a space, as normal.
+
+#### Logical
+`!` Not
+
+Pops a value from the stack. Pushes 1 if the value was 0, pushes 0 otherwise. 
+
+`=` Equals
+
+Pops two values from the stack. Pushes 1 if the values were equal, 0 otherwise.
+
+#### Math
+`+` Add 
+`-` Subtract 
+`*` Multiply
+`%` Divide
+
+Pop two numbers from the stack, preform the desired operation upon them, and then push the result back onto the stack.
+
+Division will use trunctuating integer division.
+
+#### Print
+`d` Stdout  
+`D` Stderr 
+
+Pop a number from the stack and print it to stdout/stderr in decimal. 
+
+#### Stack
+`~` Dup
+`,` Discard
+
+Dup will pop a value from the stack and push two copies of the value.
+
+Discard will pop a value from the stack and discard it.
+
+#### Modes
+`|` Read Mode 
+`]` Write Mode 
+`>` Stack Push Mode 
+`"` Print Mode 
+`{` Conditional Mode
+
+Enters the assorted modes as described in the operator names.
 
 ### Read/Write Mode
 `0-9` Interpreted as a decimal number 
@@ -114,9 +147,9 @@ If a `.` instruction is not found before a matching `}` instruction, no code wil
 
 #### Example
 ```
->1.{"Will be printed"."Won't be"}                                                        #
->0.{"Will not be printed"."I am"}                                                       #
->1.{"Does not need an else"}                                                           #
+>1.{"Will be printed"."Won't be"}                                                     #
+>0.{"Will not be printed"."I am"}                                                     #
+>1.{"Does not need an else"}                                                          #
 >0.{"Nothing happens"}                                                                #
 >0.{."Don't need anything in the first space if the conditional starts with a period"}
 ```
