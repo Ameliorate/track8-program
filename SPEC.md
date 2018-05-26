@@ -55,8 +55,9 @@ A 8 element stack is proveded for the workings of operators. If you try to push 
 `]` Enter Write Mode 
 `>` Enter Stack Push Mode 
 `"` Enter Print Mode 
+`{` Enter Conditional Mode
 
-### Program Move
+### Program Mode
 `0-9` Interpeted as a decimal number 
 `.` Go back to Main Mode and move to the program as dictated by the previous number.
 
@@ -106,3 +107,26 @@ Anything else is the text to be printed.
 "Error: Started on an unreachable program!`
 ```
 Prints `Hello World!`. The error will not be printed.
+
+### Conditional Mode
+`}` Exit Conditional Mode.
+`.` Else condition
+
+All instructions in Main Mode can also be used in Conditional Mode, including `{`.
+
+Invocations of Conditional Mode may nest, and work as expected.
+
+When entering Conditional Mode, a value will be popped from the stack.
+If this value is not 0, instructions will be executed as if in Main Mode, until a `.` instruction is encountered.
+If this value is 0, all instructions will be skipped until a `.` instruction is encountered.
+After the `.` instruction is encounterd, instructions will be executed as normal.
+If a `.` instruction is not found before a matching `}` instruction, no code will be executed.
+
+#### Example
+```
+>1.{"Will be printed"."Won't be"}                                                        #
+>0.{"Will not be printed"."I am"}                                                       #
+>1.{"Does not need an else"}                                                           #
+>0.{"Nothing happens"}                                                                #
+>0.{."Don't need anything in the first space if the conditional starts with a period"}
+```
