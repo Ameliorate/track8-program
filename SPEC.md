@@ -39,8 +39,13 @@ Does nothing.
 #### Up/Down Program
 `#` Down 
 `^` Up
+`/` Up If True
+`\` Down If True
 
 Moves up/down a program.
+
+Up If True and Down If True will pop a value from the stack, and if that number is not equal to 0 move up or down accordingly.
+If the number is equal to 0 nothing will happen.
 
 The interpreter will exit if trying to move up or down to a nonexistant program. 
 
@@ -84,7 +89,6 @@ Discard will pop a value from the stack and discard it.
 `]` Write Mode 
 `>` Stack Push Mode 
 `"` Print Mode 
-`{` Conditional Mode
 
 Enters the assorted modes as described in the operator names.
 
@@ -130,26 +134,3 @@ Anything else is the text to be printed.
 "Error: Started on an unreachable program!`
 ```
 Prints `Hello World!`. The error will not be printed.
-
-### Conditional Mode
-`}` Exit Conditional Mode.
-`.` Else condition
-
-All instructions in Main Mode can also be used in Conditional Mode, including `{`.
-
-Invocations of Conditional Mode may nest, and work as expected.
-
-When entering Conditional Mode, a value will be popped from the stack.
-If this value is not 0, instructions will be executed as if in Main Mode, until a `.` instruction is encountered.
-If this value is 0, all instructions will be skipped until a `.` instruction is encountered.
-After the `.` instruction is encounterd, instructions will be executed as normal.
-If a `.` instruction is not found before a matching `}` instruction, no code will be executed.
-
-#### Example
-```
->1.{"Will be printed"."Won't be"}                                                     #
->0.{"Will not be printed"."I am"}                                                     #
->1.{"Does not need an else"}                                                          #
->0.{"Nothing happens"}                                                                #
->0.{."Don't need anything in the first space if the conditional starts with a period"}
-```
