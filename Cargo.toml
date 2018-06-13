@@ -1,6 +1,6 @@
 [package]
 name = "track8-program"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Amelorate <ameilorate2@gmail.com>"]
 
 [dependencies]
