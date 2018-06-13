@@ -6,6 +6,8 @@ description = "A programming language running on an emulated 8 track tape"
 readme = "README.md"
 keywords = ["esoteric", "interpreter", "language"]
 license = "MIT"
+repository = "https://github.com/Ameliorate/track8-program"
+homepage = "https://github.com/Ameliorate/track8-program"
 
 [lib]
 name = "track8_program"
