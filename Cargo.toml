@@ -5,7 +5,15 @@ authors = ["Amelorate <ameilorate2@gmail.com>"]
 description = "A programming language running on an emulated 8 track tape"
 readme = "README.md"
 keywords = ["esoteric", "interpreter", "language"]
-licence = "MIT"
+license = "MIT"
+
+[lib]
+name = "track8_program"
+path = "src/lib.rs"
+
+[[bin]]
+name = "track8_program_bin"
+path = "src/bin.rs"
 
 [dependencies]
 derive_more = "0.9.0"
