@@ -2,6 +2,10 @@
 name = "track8-program"
 version = "1.0.0"
 authors = ["Amelorate <ameilorate2@gmail.com>"]
+description = "A programming language running on an emulated 8 track tape"
+readme = "README.md"
+keywords = ["esoteric", "interpreter", "language"]
+licence = "MIT"
 
 [dependencies]
 derive_more = "0.9.0"
