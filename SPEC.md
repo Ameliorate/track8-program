@@ -1,10 +1,12 @@
 # 8track-program Specification
+This is a semi-formal specification for the 8track programming language.
+
+The 8track programming language models an [8 track tape](https://en.wikipedia.org/wiki/8-track_tape).
 
 ## File Format
 An 8 track cartridge can be encoded as a utf-8 .8trk file as follows: 
 Text inside curly braces is to be replaced with data. 
 ```
-[{interpreter pragmas}]
 {program 1}
 {program 2}
 {program 3}
@@ -18,16 +20,19 @@ If a program is shorter than the longest program, the program shall be extended 
 
 A program is an array of UTF-8 characters, where each character will be used as an instruction.
 
-The pragma may be omitted if there is no pragma.
+If the tape has fewer than eight programs, the missing programms will be replaced with spaces.
+
+An interpreter flag can be set to allow more than 8 programs.
 
 ## Program Model
-The tape has 8 programs. Each program is a stream of characters that may also be interpreted as 8 bit numbers.
+The tape has 8 programs. Each program is a stream of characters that may also be interpreted as unsigned 32 bit numbers.
 Each end of the tape is attached to each other, such that reaching the end of the program will move to the beginning of the same program.
 
 The interpeter simulates a tape head. This tape head can access any value on any of the 8 programs it is over, and move right.
 The tape head is unable to move leftwards or rewind the tape, because of the physical nature of the tape.
 
 A 8 element stack is proveded for the workings of operators. If you try to push to a full stack, the pushed values will be discarded silently.
+An interpreter flag is provided to allow for more than 8 elements to be pushed to the stack.
 
 ## Instructions
 ### Main Mode
@@ -38,9 +43,9 @@ Does nothing.
 
 #### Up/Down Program
 `#` Down 
-`^` Up
-`/` Up If True
-`\` Down If True
+`^` Up 
+`/` Up If True 
+`\` Down If True 
 
 Moves up/down a program.
 
@@ -63,22 +68,22 @@ Pops two values from the stack. Pushes 1 if the values were equal, 0 otherwise.
 #### Math
 `+` Add 
 `-` Subtract 
-`*` Multiply
-`%` Divide
+`*` Multiply 
+`%` Divide 
 
 Pop two numbers from the stack, preform the desired operation upon them, and then push the result back onto the stack.
 
 Division will use trunctuating integer division.
 
 #### Print
-`d` Stdout  
+`d` Stdout 
 `D` Stderr 
 
 Pop a number from the stack and print it to stdout/stderr in decimal. 
 
 #### Stack
-`~` Dup
-`,` Discard
+`~` Dup 
+`,` Discard 
 
 Dup will pop a value from the stack and push two copies of the value.
 
@@ -117,16 +122,16 @@ Pushes decimal 30 to the stack.
 
 ### Print Mode
 `"` Print the text to stdout and return to Main Mode. 
-`\`` Print the text to stderr and return to Main Mode.
-`\\` Escape character.
+`\`` Print the text to stderr and return to Main Mode. 
+`\\` Escape character. 
 
 Anything else is the text to be printed.
 
 #### Escape Characters
-`\\\\` Literal backslash
-`\n` Newline
-`\"` Literal Quote
-`\g` Literal Grave (replace g with a grave character)
+`\\\\` Literal backslash 
+`\n` Newline 
+`\"` Literal Quote 
+`\g` Literal Grave (replace g with a grave character) 
 
 #### Example
 ```
